@@ -23,13 +23,13 @@ Run it:
 
 ## Opts:
 
-`-i` `"file_extension"`
+`-i` + `"file_extension"`:
 Specify the input format. By default: mkv
 
-`-o` `"file_extension"`
+`-o` + `"file_extension"`:
 Specify the output format. By default: mp4
 
-`-d` `"directory"`
+`-d` + `"directory"`:
 Specify the working directory. By default: the program where `convert-all.sh` is located
 
-`-v` Verbose mode, stores all the ffmpeg logs in a `console.log` file, located in the working directory
+`-v`: Verbose mode, stores all the ffmpeg logs in a `console.log` file, located in the working directory
