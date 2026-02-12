@@ -3,11 +3,11 @@ set -e
 
 format_in="mkv"
 format_out="mp4"
-output_log="conversion.log"
+output_log="/dev/null"
 
 main (){
 
-    while getopts ": i: o: d: s" opt; do
+    while getopts ": i: o: d: v" opt; do
         case ${opt} in
             i) echo "Input format set to: $OPTARG"
                 format_in=$OPTARG
@@ -24,8 +24,8 @@ main (){
                 fi
                 cd "$OPTARG"
             ;;
-            s) echo "Silent mode enabled. Suppressing output from ffmpeg."
-                 output_log="/dev/null"
+            v) echo "Verbose mode enabled. Output will be logged to console."
+                 output_log="console.log"
             ;;
             ?)
                 echo "Invalid option: -$OPTARG" >&2
