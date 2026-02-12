@@ -1,7 +1,7 @@
 # multi-video-conversion
 converting all the video from a folder with a specific format to another format
 
-## How to use:
+## **How to use:**
 
 Download `convert-all.sh` or clone the Git repo:
 
@@ -21,3 +21,26 @@ Run it:
 ./convert-all.sh
 ```
 
+## **Opts:**
+
+### **-i "file_extension"**
+
+Specify the input format
+
+By default: mkv
+
+### **-o "file_extension"**
+
+Specify the output format
+
+By default: mp4
+
+### **-d "directory"**
+
+Specify the working directory
+
+By default: the program where `convert-all.sh` is located
+
+### **-v**
+
+Verbose mode, stores all the ffmpeg logs in a `console.log` file, located in the working directory
