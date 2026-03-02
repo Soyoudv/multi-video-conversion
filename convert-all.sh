@@ -49,8 +49,10 @@ main (){
 
 
 
-    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+    DIR="$(pwd)"
     cd "$DIR"
+
+
     echo "Running in directory: $DIR"
     all_file_in=$(ls | grep ".${format_in}$" || true)
     all_file_in=$(tr ' ' ';;' <<< "$all_file_in")
