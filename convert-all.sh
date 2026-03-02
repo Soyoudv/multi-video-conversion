@@ -63,7 +63,7 @@ main (){
         file_out="${file_in%.${format_in}}.${format_out}"
 
         echo "Converting '$file_in' to '$file_out'..."
-        if (ffmpeg -i "$file_in" "$file_out" >> $output_log 2>&1); then
+        if (ffmpeg -i "$file_in" -c:a copy "$file_out" >> $output_log 2>&1); then
             echo "Successfully converted '$file_in' to '$file_out'."
         else
             err=$((err + 1))
