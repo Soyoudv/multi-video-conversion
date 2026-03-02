@@ -4,22 +4,28 @@ set -e
 format_in="mkv"
 format_out="mp4"
 output_log="/dev/null"
+hevc=""
 
 main (){
 
-    while getopts ": h i: o: d: v j" opt; do
+    while getopts ": h i: o: d: v x" opt; do
         case ${opt} in
             h) echo "Usage: $0 [-i input_format] [-o output_format] [-d directory] [-v] [-j]"
                echo "  -i input_format   Set the input video format (default: mkv)"
                echo "  -o output_format  Set the output video format (default: mp4)"
                echo "  -d directory      Set the working directory (default: current directory)"
                echo "  -v                Enable verbose mode (log output to console)"
+               echo "  -x                Enable hevc mode (x265 encoding)"
+               exit 0
             ;;
             i) echo "Input format set to: $OPTARG"
                 format_in=$OPTARG
             ;;
             o) echo "Output format set to: $OPTARG"
                 format_out=$OPTARG
+            ;;
+            x) echo "hevc mode enabled, x265 encoding for all files"
+                hevc="-c:v libx265"
             ;;
             d)
                 if (cd "$OPTARG" 2>/dev/null); then
@@ -63,7 +69,7 @@ main (){
         file_out="${file_in%.${format_in}}.${format_out}"
 
         echo "Converting '$file_in' to '$file_out'..."
-        if (ffmpeg -i "$file_in" -c:a copy "$file_out" >> $output_log 2>&1); then
+        if (ffmpeg -i "$file_in" $hevc -c:a copy "$file_out" >> $output_log 2>&1); then
             echo "Successfully converted '$file_in' to '$file_out'."
         else
             err=$((err + 1))
