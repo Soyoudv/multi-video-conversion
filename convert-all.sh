@@ -7,8 +7,14 @@ output_log="/dev/null"
 
 main (){
 
-    while getopts ": i: o: d: v" opt; do
+    while getopts ": h i: o: d: v j" opt; do
         case ${opt} in
+            h) echo "Usage: $0 [-i input_format] [-o output_format] [-d directory] [-v] [-j]"
+               echo "  -i input_format   Set the input video format (default: mkv)"
+               echo "  -o output_format  Set the output video format (default: mp4)"
+               echo "  -d directory      Set the working directory (default: current directory)"
+               echo "  -v                Enable verbose mode (log output to console)"
+            ;;
             i) echo "Input format set to: $OPTARG"
                 format_in=$OPTARG
             ;;
