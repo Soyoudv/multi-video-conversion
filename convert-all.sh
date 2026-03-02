@@ -68,7 +68,12 @@ main (){
     for file_in in $all_file_in; do
 
         file_in=$(tr ';;' ' ' <<< "$file_in")
-        file_out="${file_in%.${format_in}}.${format_out}"
+        if [[ $format_in == $format_out ]]; then
+            file_out="${file_in%.${format_in}}_converted.${format_out}"
+        else
+            file_out="${file_in%.${format_in}}.${format_out}"
+        fi
+
 
         echo "Converting '$file_in' to '$file_out'..."
         if (ffmpeg -i "$file_in" $hevc -c:a copy "$file_out" >> $output_log 2>&1); then
