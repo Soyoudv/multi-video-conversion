@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+cd ..
+pip install grngame
 set -e
 
 format_in="mkv"
